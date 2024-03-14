@@ -85,7 +85,7 @@ android {
 
     namespace "com.foobar"
     defaultConfig {
-        applicationId "com.foobar"
+        applicationId "com.foobar.development"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -93,6 +93,23 @@ android {
 
         buildConfigField("boolean", "REACT_NATIVE_UNSTABLE_USE_RUNTIME_SCHEDULER_ALWAYS", (findProperty("reactNative.unstable_useRuntimeSchedulerAlways") ?: true).toString())
     }
+
+    flavorDimensions "env"
+    productFlavors {
+        production {
+            dimension "env"
+            applicationId "com.foobar.production"
+        }
+        development {
+            dimension "env"
+            applicationId "com.foobar.development"
+        }
+        staging {
+            dimension "env"
+            applicationId "com.foobar.staging"
+        }
+    }
+
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
